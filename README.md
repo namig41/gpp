@@ -23,7 +23,7 @@ def main(a, b) {
 		print(" ");
 		print(b);
 	};
-	print(a, b);
+	println(a, b);
 };
 
 main("Hello", "World!");
