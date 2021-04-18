@@ -4,19 +4,19 @@ A simple compiler for a very simple toy language. This is a learning project tha
 
 ## The language grammar
 
-- `Type_specifier`
+### `Type_specifier`
 ```
 INT
 STRING
 ```
 
-- `Variable definition`
+### `Variable definition`
 ```c
 var a = 3;
 
 ```
 
-- `Funciton definition`
+### `Funciton definition`
 ```c
 def main(a, b) {
 	print(a, b);
@@ -25,7 +25,7 @@ def main(a, b) {
 main(3, "hell");
 ```
 
-- `Assignment`
+### `Assignment`
 ```c
 var a = 3;
 
@@ -35,7 +35,7 @@ a = "Hello World";
 
 ## How to use it
 
-Using ``make`` will create the ``minishell`` executable.
+Using ``make`` will create the ``gpp`` executable.
 
 Simply run it with:
 
