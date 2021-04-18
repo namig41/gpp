@@ -18,10 +18,15 @@ var a = 3;
 ### `Funciton definition`
 ```c
 def main(a, b) {
+	def println(a, b) {
+		print(a);
+		print(" ");
+		print(b);
+	};
 	print(a, b);
 };
 
-main(3, "hell");
+main("Hello", "World!");
 ```
 
 ### `Assignment`
