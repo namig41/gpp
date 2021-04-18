@@ -1,0 +1,151 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AST_ASSIGNMENT	includes/ast.h	/^		AST_ASSIGNMENT,$/;"	e	language:C++	enum:s_ast::__anon1
+AST_BINOP	includes/ast.h	/^		AST_BINOP,$/;"	e	language:C++	enum:s_ast::__anon1
+AST_COMPOUND	includes/ast.h	/^		AST_COMPOUND,$/;"	e	language:C++	enum:s_ast::__anon1
+AST_FUNCTION_CALL	includes/ast.h	/^		AST_FUNCTION_CALL,$/;"	e	language:C++	enum:s_ast::__anon1
+AST_FUNCTION_DEFINITION	includes/ast.h	/^		AST_FUNCTION_DEFINITION,$/;"	e	language:C++	enum:s_ast::__anon1
+AST_H	includes/ast.h	2;"	d	language:C++
+AST_INT	includes/ast.h	/^		AST_INT,$/;"	e	language:C++	enum:s_ast::__anon1
+AST_NOOP	includes/ast.h	/^		AST_NOOP$/;"	e	language:C++	enum:s_ast::__anon1
+AST_STRING	includes/ast.h	/^		AST_STRING,$/;"	e	language:C++	enum:s_ast::__anon1
+AST_VARIABLE	includes/ast.h	/^		AST_VARIABLE,$/;"	e	language:C++	enum:s_ast::__anon1
+AST_VARIABLE_DEFINITION	includes/ast.h	/^		AST_VARIABLE_DEFINITION,$/;"	e	language:C++	enum:s_ast::__anon1
+CC	Makefile	/^CC 	   			= gcc$/;"	m	language:Make
+CFLAGS	Makefile	/^CFLAGS 	   		=  -O2 -g -I$(DIR_INC)$/;"	m	language:Make
+COMPILER	Makefile	/^COMPILER 		= gpp$/;"	m	language:Make
+DIR_INC	Makefile	/^DIR_INC			= .\/includes\/$/;"	m	language:Make
+DIR_OBJ	Makefile	/^DIR_OBJ 		= .\/obj\/$/;"	m	language:Make
+DIR_SRC	Makefile	/^DIR_SRC			= .\/src\/$/;"	m	language:Make
+FILE_GPP	Makefile	/^FILE_GPP 	= \\$/;"	m	language:Make
+GPP_H	includes/gpp.h	2;"	d	language:C++
+IO_H	includes/io.h	2;"	d	language:C++
+LEXER_H	includes/lexer.h	2;"	d	language:C++
+MACROS_H	includes/macros.h	2;"	d	language:C++
+MAX	includes/macros.h	5;"	d	language:C++
+MIN	includes/macros.h	4;"	d	language:C++
+OBJ_GPP	Makefile	/^OBJ_GPP 		= \\$/;"	m	language:Make
+PARSER_H	includes/parser.h	2;"	d	language:C++
+SCOPE_H	includes/scope.h	2;"	d	language:C++
+TOKEN_COLON	includes/token.h	/^		TOKEN_COLON,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_COMMA	includes/token.h	/^		TOKEN_COMMA,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_EOF	includes/token.h	/^		TOKEN_EOF$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_EQUALS	includes/token.h	/^		TOKEN_EQUALS,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_GT	includes/token.h	/^		TOKEN_GT,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_H	includes/token.h	2;"	d	language:C++
+TOKEN_ID	includes/token.h	/^		TOKEN_ID,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_INT	includes/token.h	/^		TOKEN_INT,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_LBRACE	includes/token.h	/^		TOKEN_LBRACE,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_LPAREN	includes/token.h	/^		TOKEN_LPAREN,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_LT	includes/token.h	/^		TOKEN_LT,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_MINUS	includes/token.h	/^		TOKEN_MINUS,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_PLUS	includes/token.h	/^		TOKEN_PLUS,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_RBRACE	includes/token.h	/^		TOKEN_RBRACE,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_RPAREN	includes/token.h	/^		TOKEN_RPAREN,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_SEMI	includes/token.h	/^		TOKEN_SEMI,$/;"	e	language:C++	enum:s_token::__anon2
+TOKEN_STRING	includes/token.h	/^		TOKEN_STRING,$/;"	e	language:C++	enum:s_token::__anon2
+VISITOR_H	includes/visitor.h	2;"	d	language:C++
+builtin_function_print	src/visitor.c	/^static t_ast* builtin_function_print(t_visitor* visitor, t_ast* node)$/;"	f	language:C	file:
+c	includes/lexer.h	/^	char			c;$/;"	m	language:C++	struct:s_lexer
+compound_size	includes/ast.h	/^	size_t			compound_size;$/;"	m	language:C++	struct:s_ast
+compound_value	includes/ast.h	/^	struct s_ast**	compound_value;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_ast
+cur_token	includes/parser.h	/^	t_token* 	cur_token;$/;"	m	language:C++	struct:s_parser
+function_call_arguments	includes/ast.h	/^	struct s_ast**	function_call_arguments;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_ast
+function_call_arguments_size	includes/ast.h	/^	size_t			function_call_arguments_size;$/;"	m	language:C++	struct:s_ast
+function_call_name	includes/ast.h	/^	char*			function_call_name;$/;"	m	language:C++	struct:s_ast
+function_definition_args	includes/ast.h	/^	struct s_ast**	function_definition_args;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_ast
+function_definition_args_size	includes/ast.h	/^	size_t			function_definition_args_size;$/;"	m	language:C++	struct:s_ast
+function_definition_body	includes/ast.h	/^	struct s_ast*	function_definition_body;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_ast
+function_definition_name	includes/ast.h	/^	char*			function_definition_name;$/;"	m	language:C++	struct:s_ast
+function_definitions	includes/scope.h	/^	t_ast**		function_definitions;$/;"	m	language:C++	struct:s_scope
+function_definitions_size	includes/scope.h	/^	size_t		function_definitions_size;$/;"	m	language:C++	struct:s_scope
+get_node_scope	src/parser.c	/^static t_scope* get_node_scope(t_parser* parser, t_ast* node)$/;"	f	language:C	file:
+global_scope	includes/ast.h	/^	struct s_scope*	global_scope;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_scope
+gpp_compiler	src/gpp.c	/^void gpp_compiler(const char* file_name)$/;"	f	language:C
+i	includes/lexer.h	/^	size_t			i;$/;"	m	language:C++	struct:s_lexer
+init_ast	src/ast.c	/^t_ast* init_ast(int type)$/;"	f	language:C
+init_lexer	src/lexer.c	/^t_lexer* init_lexer(char* src)$/;"	f	language:C
+init_parser	src/parser.c	/^t_parser*		init_parser(t_lexer* lexer)$/;"	f	language:C
+init_scope	src/scope.c	/^t_scope*		init_scope()$/;"	f	language:C
+init_token	src/token.c	/^t_token* init_token(char* value, int type)$/;"	f	language:C
+init_visitor	src/visitor.c	/^t_visitor* init_visitor()$/;"	f	language:C
+int_value	includes/ast.h	/^	int				int_value;$/;"	m	language:C++	struct:s_ast
+io_read_file	src/io.c	/^char* io_read_file(const char* file_name)$/;"	f	language:C
+left	includes/ast.h	/^	struct s_ast*	left;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_ast
+lexer	includes/parser.h	/^	t_lexer*	lexer;$/;"	m	language:C++	struct:s_parser
+lexer_advance	src/lexer.c	/^void lexer_advance(t_lexer* lexer)$/;"	f	language:C
+lexer_advance_current	src/lexer.c	/^t_token* lexer_advance_current(t_lexer* lexer, int type)$/;"	f	language:C
+lexer_next_token	src/lexer.c	/^t_token* lexer_next_token(t_lexer* lexer)$/;"	f	language:C
+lexer_parse_id	src/lexer.c	/^t_token* lexer_parse_id(t_lexer* lexer)$/;"	f	language:C
+lexer_parse_number	src/lexer.c	/^t_token* lexer_parse_number(t_lexer* lexer)$/;"	f	language:C
+lexer_parse_string	src/lexer.c	/^t_token* lexer_parse_string(t_lexer* lexer)$/;"	f	language:C
+lexer_peek	src/lexer.c	/^char lexer_peek(t_lexer* lexer, int offset)$/;"	f	language:C
+lexer_retire	src/lexer.c	/^void lexer_retire(t_lexer* lexer, size_t i)$/;"	f	language:C
+lexer_skip_comment	src/lexer.c	/^void lexer_skip_comment(t_lexer* lexer)$/;"	f	language:C
+lexer_skip_whitspace	src/lexer.c	/^void lexer_skip_whitspace(t_lexer* lexer)$/;"	f	language:C
+main	src/main.c	/^int main(int argc, char** argv)$/;"	f	language:C
+op	includes/ast.h	/^	int				op;$/;"	m	language:C++	struct:s_ast
+parser_advance	src/parser.c	/^t_token*		parser_advance(t_parser* parser, int type)$/;"	f	language:C
+parser_parse	src/parser.c	/^t_ast*			parser_parse(t_parser* parser)$/;"	f	language:C
+parser_parse_expr	src/parser.c	/^t_ast*			parser_parse_expr(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_factor	src/parser.c	/^t_ast*			parser_parse_factor(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_function_call	src/parser.c	/^t_ast*			parser_parse_function_call(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_function_definition	src/parser.c	/^t_ast*			parser_parse_function_definition(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_id	src/parser.c	/^t_ast*			parser_parse_id(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_integer	src/parser.c	/^t_ast*			parser_parse_integer(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_scope_variable	src/parser.c	/^t_ast*			parser_parse_scope_variable(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_statement	src/parser.c	/^t_ast*			parser_parse_statement(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_statements	src/parser.c	/^t_ast*			parser_parse_statements(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_string	src/parser.c	/^t_ast*			parser_parse_string(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_term	src/parser.c	/^t_ast*			parser_parse_term(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_variable	src/parser.c	/^t_ast*			parser_parse_variable(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parse_variable_definition	src/parser.c	/^t_ast*			parser_parse_variable_definition(t_parser* parser, t_scope* scope)$/;"	f	language:C
+parser_parser_assignment	src/parser.c	/^t_ast*			parser_parser_assignment(t_parser* parser, t_scope* scope)$/;"	f	language:C
+prev_token	includes/parser.h	/^	t_token*	prev_token;$/;"	m	language:C++	struct:s_parser
+right	includes/ast.h	/^	struct s_ast*	right;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_ast
+s_ast	includes/ast.h	/^typedef struct		s_ast$/;"	s	language:C++
+s_lexer	includes/lexer.h	/^typedef struct		s_lexer$/;"	s	language:C++
+s_parser	includes/parser.h	/^typedef struct	s_parser $/;"	s	language:C++
+s_scope	includes/scope.h	/^typedef struct	s_scope $/;"	s	language:C++
+s_token	includes/token.h	/^typedef struct s_token$/;"	s	language:C++
+s_visitor	includes/visitor.h	/^typedef struct		s_visitor$/;"	s	language:C++
+scope	includes/ast.h	/^	struct s_scope*	scope;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_scope
+scope	includes/parser.h	/^	t_scope*	scope;$/;"	m	language:C++	struct:s_parser
+scope_add_function_definition	src/scope.c	/^t_ast*			scope_add_function_definition(t_scope* scope, t_ast* fdef)$/;"	f	language:C
+scope_add_variable_definition	src/scope.c	/^t_ast*			scope_add_variable_definition(t_scope* scope, t_ast* var_def)$/;"	f	language:C
+scope_get_function_definition	src/scope.c	/^t_ast*			scope_get_function_definition(t_scope* scope, const char* fname)$/;"	f	language:C
+scope_get_variable_definition	src/scope.c	/^t_ast*			scope_get_variable_definition(t_scope* scope, const char* var_name)$/;"	f	language:C
+src	includes/lexer.h	/^	char*			src;$/;"	m	language:C++	struct:s_lexer
+src_size	includes/lexer.h	/^	size_t			src_size;$/;"	m	language:C++	struct:s_lexer
+string_value	includes/ast.h	/^	char*			string_value;$/;"	m	language:C++	struct:s_ast
+t_ast	includes/ast.h	/^}					t_ast;$/;"	t	language:C++	typeref:struct:s_ast
+t_lexer	includes/lexer.h	/^}					t_lexer;$/;"	t	language:C++	typeref:struct:s_lexer
+t_parser	includes/parser.h	/^}				t_parser;$/;"	t	language:C++	typeref:struct:s_parser
+t_scope	includes/scope.h	/^}				t_scope;$/;"	t	language:C++	typeref:struct:s_scope
+t_token	includes/token.h	/^}				t_token;$/;"	t	language:C++	typeref:struct:s_token
+t_visitor	includes/visitor.h	/^}					t_visitor;$/;"	t	language:C++	typeref:struct:s_visitor
+token_to_string	src/token.c	/^char* token_to_string(t_token* token)$/;"	f	language:C
+token_type_to_stirng	src/token.c	/^static const char* token_type_to_stirng(t_token* token)$/;"	f	language:C	file:
+type	includes/ast.h	/^	} type;$/;"	m	language:C++	struct:s_ast	typeref:enum:s_ast::__anon1
+type	includes/token.h	/^	} type;$/;"	m	language:C++	struct:s_token	typeref:enum:s_token::__anon2
+value	includes/token.h	/^	char*		value;$/;"	m	language:C++	struct:s_token
+variable_definition_name	includes/ast.h	/^	char*			variable_definition_name;$/;"	m	language:C++	struct:s_ast
+variable_definition_value	includes/ast.h	/^	struct s_ast*	variable_definition_value;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_ast
+variable_definitions	includes/scope.h	/^	t_ast**		variable_definitions;$/;"	m	language:C++	struct:s_scope
+variable_definitions_size	includes/scope.h	/^	size_t		variable_definitions_size;$/;"	m	language:C++	struct:s_scope
+variable_name	includes/ast.h	/^	char*			variable_name;$/;"	m	language:C++	struct:s_ast
+variable_value	includes/ast.h	/^	struct s_ast*	variable_value;$/;"	m	language:C++	struct:s_ast	typeref:struct:s_ast::s_ast
+visitor_visit	src/visitor.c	/^t_ast* visitor_visit(t_visitor* visitor, t_ast* node)$/;"	f	language:C
+visitor_visit_assignment	src/visitor.c	/^t_ast* visitor_visit_assignment(t_visitor* visitor, t_ast* node) $/;"	f	language:C
+visitor_visit_binop	src/visitor.c	/^t_ast* visitor_visit_binop(t_visitor* visitor, t_ast* node)$/;"	f	language:C
+visitor_visit_compound	src/visitor.c	/^t_ast* visitor_visit_compound(t_visitor* visitor, t_ast* node)$/;"	f	language:C
+visitor_visit_function_call	src/visitor.c	/^t_ast* visitor_visit_function_call(t_visitor* visitor, t_ast* node)$/;"	f	language:C
+visitor_visit_function_definition	src/visitor.c	/^t_ast* visitor_visit_function_definition(t_visitor* visitor, t_ast* node)$/;"	f	language:C
+visitor_visit_integer	src/visitor.c	/^t_ast* visitor_visit_integer(t_visitor* visitor, t_ast* node)$/;"	f	language:C
+visitor_visit_string	src/visitor.c	/^t_ast* visitor_visit_string(t_visitor* visitor, t_ast* node)$/;"	f	language:C
+visitor_visit_variable	src/visitor.c	/^t_ast* visitor_visit_variable(t_visitor* visitor, t_ast* node)$/;"	f	language:C
+visitor_visit_variable_definition	src/visitor.c	/^t_ast* visitor_visit_variable_definition(t_visitor* visitor, t_ast* node)$/;"	f	language:C
