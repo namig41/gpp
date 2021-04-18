@@ -4,7 +4,7 @@ A simple compiler for a very simple toy language. This is a learning project tha
 
 ## The language grammar
 
-### `Type_specifier`
+### `Type specifier`
 ```
 INT
 STRING
@@ -13,7 +13,6 @@ STRING
 ### `Variable definition`
 ```c
 var a = 3;
-
 ```
 
 ### `Funciton definition`
@@ -30,7 +29,6 @@ main(3, "hell");
 var a = 3;
 
 a = "Hello World";
-
 ```
 
 ## How to use it
@@ -41,5 +39,4 @@ Simply run it with:
 
 ```
 ./gpp flie_input
-
 ```
