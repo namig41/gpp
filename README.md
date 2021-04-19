@@ -4,18 +4,18 @@ A simple compiler for a very simple toy language. This is a learning project tha
 
 ## The language grammar
 
-### `Type specifier`
+### Type specifier
 ```
 INT
 STRING
 ```
 
-### `Variable definition`
+### Variable definition
 ```c
 var a = 3;
 ```
 
-### `Funciton definition`
+### Funciton definition
 ```c
 def main(a, b) {
 	def println(a, b) {
@@ -29,7 +29,7 @@ def main(a, b) {
 main("Hello", "World!");
 ```
 
-### `Assignment`
+### Assignment
 ```c
 var a = 3;
 
