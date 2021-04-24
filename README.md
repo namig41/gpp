@@ -67,8 +67,7 @@ output:
 var a = 0;
 
 it (a < 10) {
-	print(a);
-	print("\n");
+	print("Hello, World!\n");
 };
 ```
 ### While loop
@@ -89,5 +88,5 @@ Using ``make`` will create the ``gpp`` executable.
 Simply run it with:
 
 ```
-./gpp flie_input
+./gpp file_input
 ```
