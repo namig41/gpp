@@ -14,7 +14,7 @@ STRING
 ```c
 var a = 3;
 var abc = "Hello World!";
-var a = 1234535;
+var isValue = 1234535;
 ```
 
 ### Funciton definition
