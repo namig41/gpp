@@ -39,7 +39,6 @@ a = "Hello World";
 ```
 ### Evaluate arithmetic expression
 ```c
-
 def main() {
 	def println(x) {
 		print(x);	
@@ -62,6 +61,25 @@ output:
 34
 3
 37
+```
+### If expression
+```c
+var a = 0;
+
+it (a < 10) {
+	print(a);
+	print("\n");
+};
+```
+### While loop
+```c
+var a = 0;
+
+while (a < 10) {
+	print(a);
+	print("\n");
+	a = a + 1;
+};
 ```
 
 ## How to use it

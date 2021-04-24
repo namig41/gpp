@@ -16,6 +16,8 @@ typedef struct		s_ast
 		AST_COMPOUND,
 		AST_BINOP,
 		AST_ASSIGNMENT,
+		AST_IF,
+		AST_WHILE,
 		AST_NOOP
 	} type;
 
@@ -33,6 +35,8 @@ typedef struct		s_ast
 	struct s_ast*	function_definition_body;
 	struct s_ast**	function_definition_args;
 	size_t			function_definition_args_size;
+
+	struct s_ast*	comparsion_body;
 
 	char*			function_call_name;
 	struct s_ast**	function_call_arguments;

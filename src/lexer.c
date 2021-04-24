@@ -107,6 +107,46 @@ t_token* lexer_parse_string(t_lexer* lexer)
 	return init_token(value, TOKEN_STRING);
 }
 
+t_token* lexer_parse_comparsion(t_lexer* lexer)
+{
+	switch (lexer->c) {
+		case '=':
+			if (lexer_peek(lexer, 1) == '=') {
+				lexer_advance(lexer);
+				return lexer_advance_current(lexer, TOKEN_EQ);	
+			} else {
+				return lexer_advance_current(lexer, TOKEN_EQUALS);	
+			}
+			break;
+		case '!':
+			if (lexer_peek(lexer, 1) == '=') {
+				lexer_advance(lexer);
+				return lexer_advance_current(lexer, TOKEN_NE);	
+			}
+			break;
+		case '<':
+			if (lexer_peek(lexer, 1) == '=') {
+				lexer_advance(lexer);
+				return lexer_advance_current(lexer, TOKEN_LE);	
+			} else {
+				return lexer_advance_current(lexer, TOKEN_LT);
+			}
+			break;
+		case '>':
+			if (lexer_peek(lexer, 1) == '=') {
+				lexer_advance(lexer);
+				return lexer_advance_current(lexer, TOKEN_GE);
+			} else {
+				return lexer_advance_current(lexer, TOKEN_GT);
+			}
+			break;
+		default:
+			printf("[Lexer]: Unexpect character %c \n", lexer->c);
+			exit(1);
+	}
+	return 0;
+}
+
 void lexer_skip_comment(t_lexer* lexer)
 {
 	lexer_skip_whitspace(lexer);
@@ -149,8 +189,11 @@ t_token* lexer_next_token(t_lexer* lexer)
 			return lexer_parse_string(lexer);
 		}
 
+		if (lexer->c == '<' || lexer->c == '>' || lexer->c == '=' || lexer->c == '!') {
+			return lexer_parse_comparsion(lexer);
+		}
+
 		switch (lexer->c) {
-			case '=': return lexer_advance_current(lexer, TOKEN_EQUALS);
 			case '(': return lexer_advance_current(lexer, TOKEN_LPAREN);
 			case ')': return lexer_advance_current(lexer, TOKEN_RPAREN);
 			case '{': return lexer_advance_current(lexer, TOKEN_LBRACE);

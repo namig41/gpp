@@ -17,8 +17,6 @@ typedef struct s_token
 		TOKEN_RBRACE,
 		TOKEN_COLON,
 		TOKEN_COMMA,
-		TOKEN_LT,
-		TOKEN_GT,
 		TOKEN_INT,
 		TOKEN_STRING,
 		TOKEN_SEMI,
@@ -26,6 +24,12 @@ typedef struct s_token
 		TOKEN_MINUS,
 		TOKEN_MULT,
 		TOKEN_DIV,
+		TOKEN_EQ, // ==
+		TOKEN_NE, // !=
+		TOKEN_LE, // <=
+		TOKEN_LT, // <
+		TOKEN_GE, // >=
+		TOKEN_GT, // >
 		TOKEN_EOF
 	} type;
 

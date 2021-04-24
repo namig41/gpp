@@ -31,6 +31,8 @@ t_ast* visitor_visit(t_visitor* visitor, t_ast* node)
 		case AST_FUNCTION_CALL:			return visitor_visit_function_call(visitor, node);
 		case AST_BINOP:					return visitor_visit_binop(visitor, node);
 		case AST_ASSIGNMENT:			return visitor_visit_assignment(visitor, node);
+		case AST_IF:					return visitor_visit_if(visitor, node);
+		case AST_WHILE:					return visitor_visit_while(visitor, node);
 		case AST_NOOP:					return init_ast(AST_NOOP);
 	}
 	return init_ast(AST_NOOP);
@@ -124,7 +126,6 @@ t_ast* visitor_visit_assignment(t_visitor* visitor, t_ast* node)
 
 t_ast* visitor_visit_binop(t_visitor* visitor, t_ast* node)
 {
-	/* Q_UNUSED(visitor); */
 	t_ast* res = init_ast(AST_INT);
 
 	switch (node->op) {
@@ -146,4 +147,60 @@ t_ast* visitor_visit_binop(t_visitor* visitor, t_ast* node)
 			break;
 	}
 	return res;
+}
+
+t_ast* visitor_visit_comparsion(t_visitor* visitor, t_ast* node)
+{
+	t_ast* res = init_ast(AST_INT);
+
+	switch (node->op) {
+		case TOKEN_EQ:
+			res->int_value = visitor_visit(visitor, node->left)->int_value ==
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+		case TOKEN_NE:
+			res->int_value = visitor_visit(visitor, node->left)->int_value !=
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+		case TOKEN_LE:
+			res->int_value = visitor_visit(visitor, node->left)->int_value <=
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+		case TOKEN_LT:
+			res->int_value = visitor_visit(visitor, node->left)->int_value <
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+		case TOKEN_GE:
+			res->int_value = visitor_visit(visitor, node->left)->int_value >=
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+		case TOKEN_GT:
+			res->int_value = visitor_visit(visitor, node->left)->int_value >
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+	}
+	return res;
+}
+
+t_ast* visitor_visit_if(t_visitor* visitor, t_ast* node)
+{
+	t_ast* res = visitor_visit_comparsion(visitor, node);
+
+	if (res->int_value) {
+		return visitor_visit(visitor, node->comparsion_body);
+	}
+
+	return node;
+}
+
+t_ast* visitor_visit_while(t_visitor* visitor, t_ast* node)
+{
+	t_ast* res = visitor_visit_comparsion(visitor, node);
+
+	while (res->int_value) {
+		visitor_visit(visitor, node->comparsion_body);
+		res = visitor_visit_comparsion(visitor, node);
+	}
+
+	return node;
 }

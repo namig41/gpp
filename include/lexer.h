@@ -27,6 +27,7 @@ void 				lexer_skip_comment(t_lexer* lexer);
 t_token*			lexer_parse_id(t_lexer* lexer);
 t_token* 			lexer_parse_number(t_lexer* lexer);
 t_token* 			lexer_parse_string(t_lexer* lexer);
+t_token*			lexer_parse_comparsion(t_lexer* lexer);
 
 t_token*			lexer_next_token(t_lexer* lexer);
 t_token* 			lexer_advance_current(t_lexer* lexer, int type);

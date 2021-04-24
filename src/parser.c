@@ -230,12 +230,53 @@ t_ast*			parser_parse_string(t_parser* parser, t_scope* scope)
 	return ast_string;
 }
 
+t_ast*			parser_parse_comparsion(t_parser* parser, t_scope* scope)
+{
+	t_ast* ast_comp;
+	if (strcmp(parser->cur_token->value, "while") == 0) {
+		ast_comp = init_ast(AST_WHILE);
+	} else {
+		ast_comp = init_ast(AST_IF);
+	}
+	parser_advance(parser, TOKEN_ID);
+	parser_advance(parser, TOKEN_LPAREN);
+	ast_comp->left = parser_parse_expr(parser, scope);
+	if (
+			parser->cur_token->type == TOKEN_EQ ||
+			parser->cur_token->type == TOKEN_NE ||
+			parser->cur_token->type == TOKEN_LE ||
+			parser->cur_token->type == TOKEN_LT ||
+			parser->cur_token->type == TOKEN_GE ||
+			parser->cur_token->type == TOKEN_GT
+	   ) {
+		
+		ast_comp->op = parser->cur_token->type;
+		parser_advance(parser, parser->cur_token->type);
+	} 
+	ast_comp->right = parser_parse_expr(parser, scope);
+	parser_advance(parser, TOKEN_RPAREN);
+	parser_advance(parser, TOKEN_LBRACE);
+
+	ast_comp->scope = scope;
+	/* t_scope* local_scope = init_scope(); */
+	ast_comp->comparsion_body = parser_parse_statements(parser, scope);
+	ast_comp->comparsion_body->scope = scope;
+
+	parser_advance(parser, TOKEN_RBRACE);
+	ast_comp->scope = scope;
+	return ast_comp;
+}
+
 t_ast*			parser_parse_id(t_parser* parser, t_scope* scope)
 {
 	if (strcmp(parser->cur_token->value, "var") == 0) {
 		return parser_parse_variable_definition(parser, scope);
 	} else if (strcmp(parser->cur_token->value, "def") == 0) {
 		return parser_parse_function_definition(parser, scope);
+	} else if (strcmp(parser->cur_token->value, "if") == 0) {
+		return parser_parse_comparsion(parser, scope);
+	} else if (strcmp(parser->cur_token->value, "while") == 0) {
+		return parser_parse_comparsion(parser, scope);
 	} else {
 		return parser_parse_variable(parser, scope);
 	}

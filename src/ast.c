@@ -11,9 +11,10 @@ t_ast* init_ast(int type)
 	ast->variable_definition_value = 0;
 	
 	ast->function_definition_body = 0;
-
 	ast->function_definition_args = 0;
 	ast->function_definition_args_size = 0;
+
+	ast->comparsion_body = 0;
 
 	ast->scope = 0;
 	ast->variable_name = 0;

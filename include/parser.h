@@ -29,4 +29,6 @@ t_ast*			parser_parse_function_call(t_parser* parser, t_scope* scope);
 t_ast*			parser_parse_id(t_parser* parser, t_scope* scope);
 t_ast*			parser_parse_string(t_parser* parser, t_scope* scope);
 t_ast*			parser_parse_integer(t_parser* parser, t_scope* scope);
+t_ast*			parse_parse_comparsion(t_parser* parser, t_scope* scope);
+
 #endif

@@ -25,5 +25,8 @@ t_ast* 				visitor_visit_assignment(t_visitor* visitor, t_ast* node);
 t_ast* 				visitor_visit_compound(t_visitor* visitor, t_ast* node);
 t_ast* 				visitor_visit_function_call(t_visitor* visitor, t_ast* node);
 t_ast*				visitor_visit_function_definition(t_visitor* visitor, t_ast* node);
+t_ast*				visitor_visit_if(t_visitor* visitor, t_ast* node);
+t_ast*				visitor_visit_while(t_visitor* visitor, t_ast* node);
+t_ast*				visitor_visit_comparsion(t_visitor* visitor, t_ast* node);
 
 #endif
