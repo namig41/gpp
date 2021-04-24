@@ -13,6 +13,8 @@ STRING
 ### Variable definition
 ```c
 var a = 3;
+var abc = "Hello World!";
+var a = 1234535;
 ```
 
 ### Funciton definition
