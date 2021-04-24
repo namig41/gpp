@@ -1,6 +1,8 @@
 #ifndef GPP_H
 #define GPP_H
 
+#include <stdio.h>
+
 #include "lexer.h"
 #include "io.h"
 #include "parser.h"

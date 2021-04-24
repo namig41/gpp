@@ -7,7 +7,7 @@ static t_scope* get_node_scope(t_parser* parser, t_ast* node)
 
 t_parser*		init_parser(t_lexer* lexer)
 {
-	t_parser* parser = calloc(1, sizeof(t_parser));
+	t_parser* parser = (t_parser *)calloc(1, sizeof(t_parser));
 	parser->cur_token = lexer_next_token(lexer);
 	parser->lexer = lexer;
 	parser->scope = init_scope();
@@ -34,10 +34,10 @@ t_ast*			parser_parse(t_parser* parser)
 t_ast*			parser_parse_statement(t_parser* parser, t_scope* scope)
 {
 	switch (parser->cur_token->type) {
-		case TOKEN_ID:		return parser_parse_id(parser, scope);
-		case TOKEN_STRING:	return parser_parse_string(parser, scope);
-		case TOKEN_INT:		return parser_parse_integer(parser, scope);		
-		case TOKEN_EOF:		return init_ast(AST_NOOP);
+		case TOKEN_ID:			return parser_parse_id(parser, scope);
+		case TOKEN_STRING:		return parser_parse_string(parser, scope);
+		case TOKEN_INT:			return parser_parse_integer(parser, scope);		
+		case TOKEN_EOF:			return init_ast(AST_NOOP);
 	}
 	return init_ast(AST_NOOP);
 }
@@ -46,7 +46,7 @@ t_ast*			parser_parse_statements(t_parser* parser, t_scope* scope)
 {
 	t_ast* compound = init_ast(AST_COMPOUND);
 	compound->scope = scope;
-	compound->compound_value = calloc(1, sizeof(t_ast *));
+	compound->compound_value = (t_ast **)calloc(1, sizeof(t_ast *));
 
 	t_ast* ast_statment = parser_parse_statement(parser, scope);
 	compound->compound_value[0] = ast_statment;
@@ -57,7 +57,7 @@ t_ast*			parser_parse_statements(t_parser* parser, t_scope* scope)
 		ast_statment = parser_parse_statement(parser, scope);
 		if (ast_statment) {
 			compound->compound_size += 1;
-			compound->compound_value = realloc(compound->compound_value,
+			compound->compound_value = (t_ast **)realloc(compound->compound_value,
 					compound->compound_size * sizeof(t_ast *));
 			compound->compound_value[compound->compound_size - 1] = ast_statment;
 
@@ -131,14 +131,14 @@ t_ast*			parser_parse_function_definition(t_parser* parser, t_scope* scope)
 	{
 		t_ast* variable = parser_parse_id(parser, scope);
 		function_definition->function_definition_args_size += 1;
-		function_definition->function_definition_args = calloc(function_definition->function_definition_args_size, sizeof(t_ast *));
+		function_definition->function_definition_args = (t_ast **)calloc(function_definition->function_definition_args_size, sizeof(t_ast *));
 		function_definition->function_definition_args[function_definition->function_definition_args_size - 1] = variable;
 
 		while (parser->cur_token->type == TOKEN_COMMA) {
 			parser_advance(parser, TOKEN_COMMA);
 			t_ast* variable = parser_parse_id(parser, scope);
 			function_definition->function_definition_args_size += 1;
-			function_definition->function_definition_args = realloc(function_definition->function_definition_args,
+			function_definition->function_definition_args = (t_ast **)realloc(function_definition->function_definition_args,
 					function_definition->function_definition_args_size * sizeof(t_ast *));
 			function_definition->function_definition_args[function_definition->function_definition_args_size - 1] = variable;
 		}
@@ -166,11 +166,13 @@ t_ast*			parser_parse_term(t_parser* parser, t_scope* scope)
 {
 	t_ast*	ast_left = parser_parse_factor(parser, scope);
 
-	while (parser->cur_token->type == TOKEN_PLUS) {
-		parser_advance(parser, TOKEN_PLUS);
+	while (parser->cur_token->type == TOKEN_PLUS ||
+			parser->cur_token->type == TOKEN_MINUS) {
+		parser_advance(parser, parser->cur_token->type);
 		t_ast* ast_binop = init_ast(AST_BINOP);
 		ast_binop->left = ast_left;
 		ast_binop->op = parser->prev_token->type;
+		ast_left = ast_binop;
 		ast_binop->right = parser_parse_factor(parser, scope);
 	}
 	return ast_left;
@@ -181,15 +183,22 @@ t_ast*			parser_parse_factor(t_parser* parser, t_scope* scope)
 	switch (parser->cur_token->type) {
 		case TOKEN_ID:		return parser_parse_id(parser, scope);
 		case TOKEN_STRING:	return parser_parse_string(parser, scope);
-		case TOKEN_INT:		return parser_parse_integer(parser, scope);
+		case TOKEN_INT:		
+			return parser_parse_integer(parser, scope);
+		case TOKEN_LPAREN:
+			parser_advance(parser, TOKEN_LPAREN);
+			t_ast* ast_expr = parser_parse_expr(parser, scope);
+			parser_advance(parser, TOKEN_RPAREN);
+			return ast_expr;
 	}
+	return init_ast(AST_NOOP);
 }
 
 t_ast*			parser_parse_function_call(t_parser* parser, t_scope* scope)
 {
 	t_ast* function_call = init_ast(AST_FUNCTION_CALL);
 	function_call->function_call_name = parser->prev_token->value;
-	function_call->function_call_arguments = calloc(1, sizeof(t_ast *));
+	function_call->function_call_arguments = (t_ast **)calloc(1, sizeof(t_ast *));
 
 	parser_advance(parser, TOKEN_LPAREN);
 
@@ -202,7 +211,7 @@ t_ast*			parser_parse_function_call(t_parser* parser, t_scope* scope)
 			parser_advance(parser, TOKEN_COMMA);
 			ast_expr = parser_parse_expr(parser, scope);
 			function_call->function_call_arguments_size += 1;
-			function_call->function_call_arguments = realloc(function_call->function_call_arguments,
+			function_call->function_call_arguments = (t_ast **)realloc(function_call->function_call_arguments,
 					function_call->function_call_arguments_size * sizeof(t_ast *));
 			function_call->function_call_arguments[function_call->function_call_arguments_size - 1] = ast_expr;
 		}
@@ -237,6 +246,15 @@ t_ast*			parser_parse_integer(t_parser* parser, t_scope* scope)
 	t_ast* ast_integer = init_ast(AST_INT);
 	ast_integer->int_value = atoi(parser->cur_token->value);
 	parser_advance(parser, TOKEN_INT);
+	if (parser->cur_token->type == TOKEN_MULT ||
+			parser->cur_token->type == TOKEN_DIV) {
+		parser_advance(parser, parser->cur_token->type);
+		t_ast* ast_binop = init_ast(AST_BINOP);
+		ast_binop->left = ast_integer;
+		ast_binop->op = parser->prev_token->type;
+		ast_binop->right = parser_parse_factor(parser, scope);
+		ast_integer = ast_binop;
+	}
 	ast_integer->scope = scope;
 	return ast_integer;
 }

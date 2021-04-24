@@ -2,7 +2,7 @@
 
 t_lexer* init_lexer(char* src)
 {
-	t_lexer* lexer = calloc(1, sizeof(t_lexer));
+	t_lexer* lexer = (t_lexer *)calloc(1, sizeof(t_lexer));
 	lexer->src = src;
 	lexer->i = 0;
 	lexer->c = lexer->src[lexer->i];
@@ -25,7 +25,7 @@ char lexer_peek(t_lexer* lexer, int offset)
 
 t_token* lexer_advance_current(t_lexer* lexer, int type)
 {
-	char* value = calloc(1, sizeof(char));
+	char* value = (char *)calloc(1, sizeof(char));
 	value[0] = lexer->c;
 	value[1] = 0;
 
@@ -36,10 +36,10 @@ t_token* lexer_advance_current(t_lexer* lexer, int type)
 
 t_token* lexer_parse_id(t_lexer* lexer)
 {
-	char* value = calloc(1, sizeof(char));
+	char* value = (char *)calloc(1, sizeof(char));
 
 	while (isalpha(lexer->c)) {
-		value = realloc(value, (strlen(value) + 2) * sizeof(char));
+		value = (char *)realloc(value, (strlen(value) + 2) * sizeof(char));
 		strcat(value, (char []){lexer->c, 0});
 		lexer_advance(lexer);
 	}
@@ -48,10 +48,10 @@ t_token* lexer_parse_id(t_lexer* lexer)
 
 t_token* lexer_parse_number(t_lexer* lexer)
 {
-	char* value = calloc(1, sizeof(char));
+	char* value = (char *)calloc(1, sizeof(char));
 
 	while (isdigit(lexer->c)) {
-		value = realloc(value, (strlen(value) + 2) * sizeof(char));
+		value = (char *)realloc(value, (strlen(value) + 2) * sizeof(char));
 		strcat(value, (char []){lexer->c, 0});
 		lexer_advance(lexer);
 	}
@@ -62,7 +62,7 @@ t_token* lexer_parse_number(t_lexer* lexer)
 t_token* lexer_parse_string(t_lexer* lexer)
 {
 	lexer_advance(lexer);
-	char* value = calloc(1, sizeof(char));
+	char* value = (char *)calloc(1, sizeof(char));
 	int find_end_string = 0;
 	while (lexer->c) {
 		if (lexer->c == '"') {
@@ -95,7 +95,7 @@ t_token* lexer_parse_string(t_lexer* lexer)
 					break;
 			}
 		}
-		value = realloc(value, (strlen(value) + 2) * sizeof(char));
+		value = (char *)realloc(value, (strlen(value) + 2) * sizeof(char));
 		strcat(value, (char []){lexer->c, 0});
 		lexer_advance(lexer);
 	}
@@ -110,18 +110,16 @@ t_token* lexer_parse_string(t_lexer* lexer)
 void lexer_skip_comment(t_lexer* lexer)
 {
 	lexer_skip_whitspace(lexer);
-	while (lexer->c == '/') {
-		if (lexer->c == '/' && lexer_peek(lexer, 1) == '*') {
-			lexer_advance(lexer);
-			lexer_advance(lexer);
-			do {
-				while (lexer->c != '*') {
-					lexer_advance(lexer);
-				}
+	while (lexer->c == '/' && lexer_peek(lexer, 1) == '*') {
+		lexer_advance(lexer);
+		lexer_advance(lexer);
+		do {
+			while (lexer->c != '*') {
 				lexer_advance(lexer);
-			} while (lexer->c != '/');
+			}
 			lexer_advance(lexer);
-		}
+		} while (lexer->c != '/');
+		lexer_advance(lexer);
 		lexer_skip_whitspace(lexer);
 	}
 }
@@ -162,6 +160,9 @@ t_token* lexer_next_token(t_lexer* lexer)
 			case '>': return lexer_advance_current(lexer, TOKEN_GT);
 			case ';': return lexer_advance_current(lexer, TOKEN_SEMI);
 			case '+': return lexer_advance_current(lexer, TOKEN_PLUS);
+			case '-': return lexer_advance_current(lexer, TOKEN_MINUS);
+			case '*': return lexer_advance_current(lexer, TOKEN_MULT);
+			case '/': return lexer_advance_current(lexer, TOKEN_DIV);
 			case '\0': break;
 			default: printf("[Lexer]: Unexpect character %c \n", lexer->c); exit(1);
 		}

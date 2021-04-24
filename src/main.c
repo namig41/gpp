@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "gpp.h"
 
 int main(int argc, char** argv)

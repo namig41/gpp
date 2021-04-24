@@ -5,7 +5,7 @@ char* io_read_file(const char* file_name)
 	FILE* fp;
 	char* line = NULL;
 	size_t len = 0;
-	ssize_t read;
+	size_t read;
 
 	fp = fopen(file_name, "rb");
 	if (fp == NULL) {
@@ -13,11 +13,11 @@ char* io_read_file(const char* file_name)
 		exit(1);
 	}
 
-	char* buffer = calloc(1, sizeof(char));
+	char* buffer = (char *)calloc(1, sizeof(char));
 	buffer[0] = '\0';
 
 	while ((read = getline(&line, &len, fp)) != -1) {
-		buffer = realloc(buffer, (strlen(buffer) + strlen(line) + 1) * sizeof(char));
+		buffer = (char *)realloc(buffer, (strlen(buffer) + strlen(line) + 1) * sizeof(char));
 		strcat(buffer, line);
 	}
 	fclose(fp);

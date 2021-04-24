@@ -10,7 +10,7 @@ FILE_GPP 	= \
 				  scope
 
 DIR_SRC			= ./src/
-DIR_INC			= ./includes/
+DIR_INC			= ./include/
 DIR_OBJ 		= ./obj/
 
 OBJ_GPP 		= \

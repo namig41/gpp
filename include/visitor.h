@@ -6,6 +6,8 @@
 
 #include "ast.h"
 #include "scope.h"
+#include "macros.h"
+#include "token.h"
 
 typedef struct		s_visitor
 {

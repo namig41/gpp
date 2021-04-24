@@ -24,6 +24,8 @@ typedef struct s_token
 		TOKEN_SEMI,
 		TOKEN_PLUS,
 		TOKEN_MINUS,
+		TOKEN_MULT,
+		TOKEN_DIV,
 		TOKEN_EOF
 	} type;
 

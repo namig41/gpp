@@ -35,6 +35,32 @@ var a = 3;
 
 a = "Hello World";
 ```
+### Evaluate arithmetic expression
+```c
+
+def main() {
+	def println(x) {
+		print(x);	
+		print("\n");	
+	};
+	var a = 2 * 3 + 4 * 5 + 2 * (1 + 3);
+	var b = 3 / 3 + 4 / 2;
+
+	println(a);
+	println(b);
+
+	a = a + b;
+
+	println(a);
+};
+
+main();
+
+output:
+34
+3
+37
+```
 
 ## How to use it
 

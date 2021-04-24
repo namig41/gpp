@@ -20,7 +20,7 @@ typedef struct		s_lexer
 t_lexer*			init_lexer(char* src);
 
 void				lexer_advance(t_lexer* lexer);
-void				lexer_retire(t_lexer* lexer, size_t i;);
+void				lexer_retire(t_lexer* lexer, size_t i);
 void 				lexer_skip_whitspace(t_lexer* lexer);
 void 				lexer_skip_comment(t_lexer* lexer);
 

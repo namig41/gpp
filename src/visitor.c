@@ -2,7 +2,7 @@
 
 static t_ast* builtin_function_print(t_visitor* visitor, t_ast* node)
 {
-	for (int i = 0; i < node->function_call_arguments_size; i++) {
+	for (int i = 0; i < (int)node->function_call_arguments_size; i++) {
 		t_ast* visited_ast = visitor_visit(visitor, node->function_call_arguments[i]);
 		
 		switch (visited_ast->type) {
@@ -15,7 +15,7 @@ static t_ast* builtin_function_print(t_visitor* visitor, t_ast* node)
 
 t_visitor* init_visitor()
 {
-	t_visitor* visitor = calloc(1, sizeof(t_visitor));
+	t_visitor* visitor = (t_visitor *)calloc(1, sizeof(t_visitor));
 	return visitor;
 }
 
@@ -33,10 +33,12 @@ t_ast* visitor_visit(t_visitor* visitor, t_ast* node)
 		case AST_ASSIGNMENT:			return visitor_visit_assignment(visitor, node);
 		case AST_NOOP:					return init_ast(AST_NOOP);
 	}
+	return init_ast(AST_NOOP);
 }
 
 t_ast* visitor_visit_variable_definition(t_visitor* visitor, t_ast* node)
 {
+	Q_UNUSED(visitor);
 	scope_add_variable_definition(node->scope, node);
 	return node;
 }
@@ -64,7 +66,7 @@ t_ast* visitor_visit_integer(t_visitor* visitor, t_ast* node)
 
 t_ast* visitor_visit_compound(t_visitor* visitor, t_ast* node)
 {
-	for (int i = 0; i < node->compound_size; i++) {
+	for (int i = 0; i < (int)node->compound_size; i++) {
 		visitor_visit(visitor, node->compound_value[i]);
 	}
 	return init_ast(AST_NOOP);
@@ -78,7 +80,7 @@ t_ast* visitor_visit_function_call(t_visitor* visitor, t_ast* node)
 		t_ast* fdef = scope_get_function_definition(node->scope, node->function_call_name);
 
 		if (fdef) {
-			for (int i = 0; i < fdef->function_definition_args_size; i++) {
+			for (int i = 0; i < (int)fdef->function_definition_args_size; i++) {
 				
 				t_ast* ast_var = fdef->function_definition_args[i];
 				t_ast* ast_value = node->function_call_arguments[i];
@@ -104,6 +106,7 @@ t_ast* visitor_visit_function_call(t_visitor* visitor, t_ast* node)
 
 t_ast* visitor_visit_function_definition(t_visitor* visitor, t_ast* node)
 {
+	Q_UNUSED(visitor);
 	scope_add_function_definition(node->scope, node);
 	return node;
 }
@@ -121,5 +124,26 @@ t_ast* visitor_visit_assignment(t_visitor* visitor, t_ast* node)
 
 t_ast* visitor_visit_binop(t_visitor* visitor, t_ast* node)
 {
-	return node;
+	/* Q_UNUSED(visitor); */
+	t_ast* res = init_ast(AST_INT);
+
+	switch (node->op) {
+		case TOKEN_PLUS:
+			res->int_value = visitor_visit(visitor, node->left)->int_value +
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+		case TOKEN_MINUS:
+			res->int_value = visitor_visit(visitor, node->left)->int_value -
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+		case TOKEN_MULT:
+			res->int_value = visitor_visit(visitor, node->left)->int_value *
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+		case TOKEN_DIV:
+			res->int_value = visitor_visit(visitor, node->left)->int_value /
+						visitor_visit(visitor, node->right)->int_value;
+			break;
+	}
+	return res;
 }

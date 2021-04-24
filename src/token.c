@@ -2,7 +2,7 @@
 
 t_token* init_token(char* value, int type)
 {
-	t_token* token = calloc(1, sizeof(t_token));
+	t_token* token = (t_token *)calloc(1, sizeof(t_token));
 	token->value = value;
 	token->type = type;
 	return token;
@@ -24,6 +24,8 @@ static const char* token_type_to_stirng(t_token* token)
 		"TOKEN_INT",
 		"TOKEN_STRING",
 		"TOKEN_SEMI",
+		"TOKEN_PLUS",
+		"TOKEN_MINUS",
 		"TOKEN_EOF"
 	};
 
@@ -33,8 +35,8 @@ static const char* token_type_to_stirng(t_token* token)
 char* token_to_string(t_token* token)
 {
 	const char* type_str = token_type_to_stirng(token);
-	const char* template = "<type=%s, int_type=%d, value=%s>\n";
-	char* str = calloc(strlen(type_str) + strlen(template), sizeof(char));
-	sprintf(str, template, type_str, token->type, token->value);
+	const char* token_template = "<type=%s, int_type=%d, value=%s>\n";
+	char* str = (char *)calloc(strlen(type_str) + strlen(token_template), sizeof(char));
+	sprintf(str, token_template, type_str, token->type, token->value);
 	return str;
 }
