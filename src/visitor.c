@@ -13,6 +13,23 @@ static t_ast* builtin_function_print(t_visitor* visitor, t_ast* node)
 	return init_ast(AST_NOOP);
 }
 
+static t_ast* builtin_function_input(t_visitor* visitor, t_ast* node)
+{
+	for (int i = 0; i < (int)node->function_call_arguments_size; i++) {
+		t_ast* visited_ast = visitor_visit(visitor, node->function_call_arguments[i]);
+		
+		if (visited_ast->type == AST_STRING) {
+			char buf[128];
+			scanf("%s", buf); 
+			visited_ast->string_value = strdup(buf);
+			
+		} else if (visited_ast->type == AST_INT) {
+			scanf("%d", &visited_ast->int_value); 
+		}
+	}
+	return init_ast(AST_NOOP);
+}
+
 t_visitor* init_visitor()
 {
 	t_visitor* visitor = (t_visitor *)calloc(1, sizeof(t_visitor));
@@ -78,6 +95,8 @@ t_ast* visitor_visit_function_call(t_visitor* visitor, t_ast* node)
 {
 	if (strcmp(node->function_call_name, "print") == 0) {
 		return builtin_function_print(visitor, node);
+	} else if (strcmp(node->function_call_name, "input") == 0) {
+		return builtin_function_input(visitor, node);
 	} else {
 		t_ast* fdef = scope_get_function_definition(node->scope, node->function_call_name);
 
